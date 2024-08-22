@@ -1,51 +1,66 @@
-// app/src/main/java/com/overclock/meucapital/MainActivity.kt
+// src/main/java/com/overclock/meucapital/MainActivity.kt
 package com.overclock.meucapital
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.text.NumberFormat
-import java.util.Locale
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), LancamentoListener {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: RecursoAdapter
-    private lateinit var saldoTextView: TextView
-    private lateinit var totalReceitasTextView: TextView
-    private lateinit var totalDespesasTextView: TextView
+    private lateinit var lancamentoAdapter: LancamentoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView = findViewById(R.id.recyclerView)
-        saldoTextView = findViewById(R.id.saldo)
-        totalReceitasTextView = findViewById(R.id.totalReceitas)
-        totalDespesasTextView = findViewById(R.id.totalDespesas)
+        val btnNovoLancamento: Button = findViewById(R.id.btnNovoLancamento)
+        btnNovoLancamento.setOnClickListener {
+            val intent = Intent(this, NovoLancamentoActivity::class.java)
+            startActivityForResult(intent, REQUEST_CODE_NOVO_LANCAMENTO)
+        }
 
-        adapter = RecursoAdapter()
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
+        lancamentoAdapter = LancamentoAdapter()
+        recyclerView.adapter = lancamentoAdapter
 
-        calcularOperacoes()
+        // Adicionar dados padrão
+        adicionarDadosPadrao()
     }
 
-    private fun calcularOperacoes() {
-        val (totalReceitas, totalDespesas, saldo) = adapter.calcularTotais()
-        Log.d("MainActivity", "Total Receitas: $totalReceitas, Total Despesas: $totalDespesas, Saldo: $saldo")
-        saldoTextView.text = "Saldo: ${formatCurrency(saldo)}"
-        totalReceitasTextView.text = "Receitas: ${formatCurrency(totalReceitas)}"
-        totalDespesasTextView.text = "Despesas: ${formatCurrency(totalDespesas)}"
-
+    private fun adicionarDadosPadrao() {
+        val dadosPadrao = listOf(
+            Lancamento("Salario", 5000.0, "20/08/2024", "Receita"),
+            Lancamento("Agua", 120.0, "22/08/2024", "Despesa"),
+            Lancamento("Faculdade", 400.0, "24/08/2024", "Despesa")
+        )
+        dadosPadrao.forEach { lancamentoAdapter.addLancamento(it) }
     }
 
-    private fun formatCurrency(value: Double): String {
-        val format = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
-        return format.format(value)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_NOVO_LANCAMENTO && resultCode == RESULT_OK) {
+            val descricao = data?.getStringExtra(EXTRA_DESCRICAO) ?: return
+            val valor = data.getDoubleExtra(EXTRA_VALOR, 0.0)
+            val dataLancamento = data.getStringExtra(EXTRA_DATA) ?: return
+            val tipo = data.getStringExtra(EXTRA_TIPO) ?: return
+            onLancamentoAdicionado(descricao, valor, dataLancamento, tipo)
+        }
+    }
+
+    override fun onLancamentoAdicionado(descricao: String, valor: Double, data: String, tipo: String) {
+        val novoLancamento = Lancamento(descricao, valor, data, tipo)
+        lancamentoAdapter.addLancamento(novoLancamento)
+    }
+
+    companion object {
+        const val REQUEST_CODE_NOVO_LANCAMENTO = 1
+        const val EXTRA_DESCRICAO = "descricao"
+        const val EXTRA_VALOR = "valor"
+        const val EXTRA_DATA = "data"
+        const val EXTRA_TIPO = "tipo"
     }
 }
