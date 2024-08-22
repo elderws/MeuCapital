@@ -2,4 +2,8 @@
 <resources>
     <string name="app_name">MeuCapital</string>
     <string name="edit_icon">Editar</string>
+    <string-array name="tipo_lancamento">
+        <item>Receita</item>
+        <item>Despesa</item>
+    </string-array>
 </resources>

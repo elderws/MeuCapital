@@ -1,62 +1,56 @@
-<!-- app/src/main/res/layout/activity_main.xml -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<!-- res/layout/activity_main.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:padding="16dp">
 
-    <!-- Seção de Saldo -->
-    <TextView
-        android:id="@+id/saldo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Saldo"
-        android:textSize="32sp"
-        android:gravity="center"
-        android:padding="32dp" />
-
-    <!-- Linha de Separação -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
-
-    <!-- Seção de Resumo de Receitas e Despesas -->
+    <!-- Saldo -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="16dp">
+        android:padding="8dp"
+        android:gravity="center">
 
         <TextView
-            android:id="@+id/totalReceitas"
-            android:layout_width="0dp"
+            android:id="@+id/tvSaldo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Receitas: "
-            android:textSize="16sp"
-            android:gravity="center"
-            android:padding="4dp" />
-
-        <TextView
-            android:id="@+id/totalDespesas"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Despesas: "
-            android:textSize="16sp"
-            android:gravity="center"
+            android:text="Saldo: 0.0"
+            android:textSize="24sp"
+            android:textStyle="bold"
             android:padding="4dp" />
     </LinearLayout>
 
-    <!-- Linha de Separação -->
-    <View
+    <!-- Totais -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvTotalReceita"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Total Receita: 0.0"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="4dp" />
+
+        <TextView
+            android:id="@+id/tvTotalDespesa"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Total Despesa: 0.0"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="4dp" />
+    </LinearLayout>
 
     <!-- Cabeçalho da Tabela -->
     <LinearLayout
@@ -78,7 +72,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Lançamento"
+            android:text="Tipo"
             android:textAlignment="center"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -129,21 +123,29 @@
 
         <Button
             android:id="@+id/btnEditarLancamento"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Editar Lançamento"
+            android:text="Editar"
             android:backgroundTint="#808080"
             android:textColor="#FFFFFF"
             android:padding="16dp" />
 
         <Button
             android:id="@+id/btnNovoLancamento"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Novo Lançamento"
+            android:text="Novo"
             android:backgroundTint="#0000FF"
+            android:textColor="#FFFFFF"
+            android:padding="16dp"
+            android:layout_marginStart="8dp" />
+
+        <Button
+            android:id="@+id/btnLimparLancamentos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Limpar"
+            android:backgroundTint="#FF0000"
             android:textColor="#FFFFFF"
             android:padding="16dp"
             android:layout_marginStart="8dp" />
