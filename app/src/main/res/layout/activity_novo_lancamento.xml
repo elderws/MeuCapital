@@ -1,39 +1,84 @@
 <!-- res/layout/activity_novo_lancamento.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".NovoLancamentoActivity">
 
-    <EditText
-        android:id="@+id/etDescricao"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Descrição" />
+        android:hint="Descrição"
+        android:layout_marginBottom="16dp">
 
-    <EditText
-        android:id="@+id/etValor"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etDescricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Valor"
-        android:inputType="numberDecimal" />
+        android:layout_marginBottom="16dp">
 
-    <EditText
-        android:id="@+id/etData"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etValor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Data"
-        android:inputType="date" />
+        android:layout_marginBottom="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:clickable="true" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
         android:id="@+id/spTipoLancamento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/tipo_lancamento" />
+        android:entries="@array/tipo_lancamento_array"
+        android:layout_marginBottom="16dp" />
 
-    <Button
-        android:id="@+id/btnSalvar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Salvar" />
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="16dp">
+
+        <Button
+            android:id="@+id/btnSalvar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salvar"
+            android:backgroundTint="@color/primary"
+            android:textColor="@android:color/white"
+            android:padding="16dp" />
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@android:color/white"
+            android:padding="16dp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
 </LinearLayout>

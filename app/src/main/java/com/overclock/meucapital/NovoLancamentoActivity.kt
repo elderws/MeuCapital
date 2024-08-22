@@ -1,14 +1,11 @@
-// src/main/java/com/overclock/meucapital/NovoLancamentoActivity.kt
 package com.overclock.meucapital
 
-import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import java.util.*
 
 class NovoLancamentoActivity : AppCompatActivity() {
 
@@ -24,6 +21,19 @@ class NovoLancamentoActivity : AppCompatActivity() {
         val spTipoLancamento: Spinner = findViewById(R.id.spTipoLancamento)
         val btnSalvar: Button = findViewById(R.id.btnSalvar)
 
+        etData.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
+                etData.setText(String.format("%02d/%02d/%04d", selectedDay, selectedMonth + 1, selectedYear))
+            }, year, month, day)
+
+            datePickerDialog.show()
+        }
+
         btnSalvar.setOnClickListener {
             val descricao = etDescricao.text.toString()
             val valor = etValor.text.toString().toDoubleOrNull()
@@ -36,7 +46,7 @@ class NovoLancamentoActivity : AppCompatActivity() {
                 resultIntent.putExtra(MainActivity.EXTRA_VALOR, valor)
                 resultIntent.putExtra(MainActivity.EXTRA_DATA, data)
                 resultIntent.putExtra(MainActivity.EXTRA_TIPO, tipoLancamento)
-                setResult(Activity.RESULT_OK, resultIntent)
+                setResult(RESULT_OK, resultIntent)
                 finish()
             } else {
                 Toast.makeText(this, "Preencha todos os campos corretamente.", Toast.LENGTH_SHORT).show()

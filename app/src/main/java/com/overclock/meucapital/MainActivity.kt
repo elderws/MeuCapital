@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.text.NumberFormat
+import java.util.Locale
 
 class MainActivity : AppCompatActivity(), LancamentoListener {
 
@@ -58,9 +60,11 @@ class MainActivity : AppCompatActivity(), LancamentoListener {
         val totalDespesa = lancamentoAdapter.getTotalDespesa()
         val saldo = totalReceita - totalDespesa
 
-        tvTotalReceita.text = "Total Receita: $totalReceita"
-        tvTotalDespesa.text = "Total Despesa: $totalDespesa"
-        tvSaldo.text = "Saldo: $saldo"
+        val formatador = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
+
+        tvTotalReceita.text = "Total Receita: ${formatador.format(totalReceita)}"
+        tvTotalDespesa.text = "Total Despesa: ${formatador.format(totalDespesa)}"
+        tvSaldo.text = "Saldo: ${formatador.format(saldo)}"
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
