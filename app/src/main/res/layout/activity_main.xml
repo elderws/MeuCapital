@@ -1,11 +1,9 @@
-<!-- res/layout/activity_main.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Saldo -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +21,6 @@
             android:padding="4dp" />
     </LinearLayout>
 
-    <!-- Totais -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,7 +49,7 @@
             android:padding="4dp" />
     </LinearLayout>
 
-    <!-- Cabeçalho da Tabela -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -99,13 +96,11 @@
             android:padding="4dp" />
     </LinearLayout>
 
-    <!-- Linha de Separação -->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider" />
 
-    <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
@@ -113,7 +108,6 @@
         android:layout_weight="1"
         android:layout_margin="16dp" />
 
-    <!-- Botões -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

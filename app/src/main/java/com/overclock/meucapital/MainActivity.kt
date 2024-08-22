@@ -1,4 +1,3 @@
-// src/main/java/com/overclock/meucapital/MainActivity.kt
 package com.overclock.meucapital
 
 import android.content.Intent
@@ -41,7 +40,6 @@ class MainActivity : AppCompatActivity(), LancamentoListener {
         tvTotalDespesa = findViewById(R.id.tvTotalDespesa)
         tvSaldo = findViewById(R.id.tvSaldo)
 
-        // Adicionar dados padrão
         adicionarDadosPadrao()
         atualizarTotais()
     }

@@ -1,4 +1,3 @@
-// src/main/java/com/overclock/meucapital/LancamentoAdapter.kt
 package com.overclock.meucapital
 
 import android.view.LayoutInflater
