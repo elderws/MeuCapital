@@ -1,0 +1,44 @@
+<!-- app/src/main/res/layout/item_recurso.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/descricao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:text="Descrição"
+        android:textColor="#000000"
+        android:padding="4dp" />
+
+    <TextView
+        android:id="@+id/lancamento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Lançamento"
+        android:textColor="#000000"
+        android:padding="4dp" />
+
+    <TextView
+        android:id="@+id/valor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Valor"
+        android:textColor="#000000"
+        android:padding="4dp" />
+
+    <TextView
+        android:id="@+id/data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Data"
+        android:textColor="#000000"
+        android:padding="4dp" />
+</LinearLayout>

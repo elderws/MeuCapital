@@ -1,0 +1,20 @@
+<!-- app/src/main/res/values/themes.xml -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.MeuCapital" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Personalize seu tema aqui. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+        <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/on_error</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnBackground">@color/on_background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+    </style>
+
+    <style name="ThemeOverlay.Material3.AppBarLayout" parent="ThemeOverlay.Material3.AppBarLayout">
+        <!-- Personalize seu tema aqui. -->
+    </style>
+</resources>
