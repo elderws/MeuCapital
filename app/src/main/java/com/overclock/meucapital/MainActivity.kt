@@ -1,10 +1,13 @@
 package com.overclock.meucapital
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.text.NumberFormat
@@ -65,6 +68,40 @@ class MainActivity : AppCompatActivity(), LancamentoListener {
         tvTotalReceita.text = "Total Receita: ${formatador.format(totalReceita)}"
         tvTotalDespesa.text = "Total Despesa: ${formatador.format(totalDespesa)}"
         tvSaldo.text = "Saldo: ${formatador.format(saldo)}"
+    }
+
+    fun showEditDialog(position: Int) {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_edit, null)
+        val etDescricao = dialogView.findViewById<EditText>(R.id.etDescricao)
+        val etTipo = dialogView.findViewById<EditText>(R.id.etTipo)
+        val etValor = dialogView.findViewById<EditText>(R.id.etValor)
+        val etData = dialogView.findViewById<EditText>(R.id.etData)
+
+        val lancamento = lancamentoAdapter.getLancamento(position)
+        etDescricao.setText(lancamento.descricao)
+        etTipo.setText(lancamento.tipo)
+        etValor.setText(lancamento.valor.toString())
+        etData.setText(lancamento.data)
+
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Editar Lançamento")
+            .setView(dialogView)
+            .setPositiveButton("Salvar") { _, _ ->
+                val descricao = etDescricao.text.toString()
+                val tipo = etTipo.text.toString()
+                val valor = etValor.text.toString().toDouble()
+                val data = etData.text.toString()
+                updateLancamento(position, Lancamento(descricao, valor, data, tipo))
+            }
+            .setNegativeButton("Cancelar", null)
+            .create()
+
+        dialog.show()
+    }
+
+    private fun updateLancamento(position: Int, newLancamento: Lancamento) {
+        lancamentoAdapter.updateLancamento(position, newLancamento)
+        atualizarTotais()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -1,4 +1,3 @@
-// src/main/java/com/overclock/meucapital/LancamentoListener.kt
 package com.overclock.meucapital
 
 interface LancamentoListener {

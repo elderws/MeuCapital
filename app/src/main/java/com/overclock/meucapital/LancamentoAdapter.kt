@@ -3,6 +3,7 @@ package com.overclock.meucapital
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -21,6 +22,9 @@ class LancamentoAdapter : RecyclerView.Adapter<LancamentoAdapter.LancamentoViewH
         holder.tvTipo.text = lancamento.tipo
         holder.tvValor.text = lancamento.valor.toString()
         holder.tvData.text = lancamento.data
+        holder.ivEditar.setOnClickListener {
+            (holder.itemView.context as MainActivity).showEditDialog(position)
+        }
     }
 
     override fun getItemCount(): Int = lancamentos.size
@@ -43,10 +47,20 @@ class LancamentoAdapter : RecyclerView.Adapter<LancamentoAdapter.LancamentoViewH
         return lancamentos.filter { it.tipo == "Despesa" }.sumOf { it.valor }
     }
 
+    fun updateLancamento(position: Int, newLancamento: Lancamento) {
+        lancamentos[position] = newLancamento
+        notifyItemChanged(position)
+    }
+
+    fun getLancamento(position: Int): Lancamento {
+        return lancamentos[position]
+    }
+
     class LancamentoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvDescricao: TextView = itemView.findViewById(R.id.tvDescricao)
         val tvTipo: TextView = itemView.findViewById(R.id.tvTipo)
         val tvValor: TextView = itemView.findViewById(R.id.tvValor)
         val tvData: TextView = itemView.findViewById(R.id.tvData)
+        val ivEditar: ImageView = itemView.findViewById(R.id.ivEditar)
     }
 }
